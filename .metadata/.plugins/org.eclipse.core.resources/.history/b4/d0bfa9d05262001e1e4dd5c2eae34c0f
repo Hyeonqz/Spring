@@ -1,0 +1,5 @@
+package framework.di.test;
+
+public class Hello {
+
+}

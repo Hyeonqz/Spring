@@ -1,0 +1,7 @@
+package Spring.anno.ex6;
+
+public class TestDao {
+	public void insert(String irum) {
+		
+	}
+}

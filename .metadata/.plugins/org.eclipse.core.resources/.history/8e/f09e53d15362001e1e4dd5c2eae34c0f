@@ -1,0 +1,14 @@
+package framework.di.test;
+
+public class HelloMain {
+
+	public static void main(String[] args) {
+		
+		System.out.println("hello 메서드 호출하기");
+		
+		Hello hello = new Hello();
+		
+		System.out.println(hello.getMsg());
+	}
+
+}

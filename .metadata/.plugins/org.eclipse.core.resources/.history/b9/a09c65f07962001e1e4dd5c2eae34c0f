@@ -1,0 +1,27 @@
+package Spring.anno.ex6;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+@Component("mysqlc")
+public class MysqlController {
+	
+	@Autowired
+	TestDao dao;
+	
+	public MysqlController(TestDao dao) {
+		this.dao = dao;
+	}
+	
+	public void insert(String irum) {
+		dao = irum;
+	}
+	
+	public void delete(String num) {
+		dao = num;
+	}
+	
+	public void select(String irum) {
+		dao = irum;
+	}
+
+}

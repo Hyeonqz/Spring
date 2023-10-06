@@ -1,0 +1,5 @@
+package Spring.anno.last;
+
+public class ShopDao1 implements ShopInter {
+
+}

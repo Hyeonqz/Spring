@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	
+	<!-- 사원데이터 설정 -->
+	<bean id="sawon" class="Spring.di.ex3.SawonData">
+	<constructor-arg value="현규"/>
+	<constructor-arg value="500"/>
+	<constructor-arg value="2023-10-04"/>
+	</bean>
+	
+	<!-- 사원 출력 -->
+	<bean id="sawon1" class="Spring.di.ex3.Sawon">
+	
+	</bean>
+
+
+</beans>

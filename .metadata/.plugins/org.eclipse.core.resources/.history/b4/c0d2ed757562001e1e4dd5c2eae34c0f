@@ -1,0 +1,13 @@
+package Spring.anno.ex5;
+
+import org.springframework.stereotype.Component;
+
+@Component("tfruite")
+public class ThailandFruit implements Fruit {
+
+	@Override
+	public void writeFruitName() {
+
+	}
+
+}

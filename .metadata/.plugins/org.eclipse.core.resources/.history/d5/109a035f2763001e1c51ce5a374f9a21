@@ -1,0 +1,25 @@
+package spring.mvc.start;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class ResultController {
+	
+	@GetMapping("/apple/list")
+	public String result1(Model model) {
+		
+		model.addAttribute("myname","ÁøÇö±Ô");
+		model.addAttribute("number","1234");
+		
+		return "result1";
+	}
+	
+	public ModelAndView fruit() {
+		ModelAndView mview = new ModelAndView();
+		
+	}
+
+}

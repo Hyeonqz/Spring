@@ -1,0 +1,17 @@
+package Spring.anno.ex4;
+
+public class MyDao implements DaoInter {
+
+	@Override
+	public void insertData(String str) {
+		System.out.println(str + "_str데이터 db에 추가성공!!!");
+
+	}
+
+	@Override
+	public void deleteData(String num) {
+		System.out.println(num + "_num에 해당하는 데이터 삭제 성공!!!");
+
+	}
+
+}

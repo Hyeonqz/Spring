@@ -1,0 +1,9 @@
+package framework.di.test;
+
+public class HelloMain {
+
+	public static void main(String[] args) {
+
+	}
+
+}

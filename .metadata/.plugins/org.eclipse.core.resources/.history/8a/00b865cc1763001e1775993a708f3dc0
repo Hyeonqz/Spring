@@ -1,0 +1,25 @@
+package Spring.anno.last;
+
+public class ShopDao implements ShopInter {
+	
+	public ShopDao() {
+		
+	}
+
+	public void insertSangpum(String sangpum, int price, String color) {
+		System.out.println(sangpum + ":" + price + ":" + color);
+	}
+	
+	public void deleteSangpum(String num) {
+		System.out.println(num + " 번 삭제 됨ㅋ");
+	}
+	
+	public void selectSangpum(String sangpum, int price, String color) {
+		System.out.println("--조회문 출력--");
+		System.out.println("상품명 : " + sangpum);
+		System.out.println("가격 : "  + price);
+		System.out.println("색깔 : "  + color);
+	}
+	
+
+}

@@ -1,0 +1,11 @@
+package Spring.anno.ex5;
+
+public class ThailandFruit implements Fruit {
+
+	@Override
+	public void writeFruitName() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

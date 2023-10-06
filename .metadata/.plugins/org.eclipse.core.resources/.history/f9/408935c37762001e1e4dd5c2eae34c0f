@@ -1,0 +1,14 @@
+package Spring.anno.ex6;
+
+public class ex6Main {
+
+	public ex6Main() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

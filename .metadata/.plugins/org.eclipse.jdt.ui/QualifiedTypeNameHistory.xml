@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.context.MessageSourceAware"/>
+    <fullyQualifiedTypeName name="Spring.di.ex1.Message1"/>
+    <fullyQualifiedTypeName name="Spring.di.ex1.Message2"/>
+    <fullyQualifiedTypeName name="Spring.di.ex1.MessageInter"/>
+    <fullyQualifiedTypeName name="Spring.di.ex2.MyInfo"/>
+    <fullyQualifiedTypeName name="java.lang.StringIndexOutOfBoundsException"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="Spring.de.ex3.SawonData"/>
+    <fullyQualifiedTypeName name="Spring.di.ex3.SawonData"/>
+    <fullyQualifiedTypeName name="java.text.Format"/>
+    <fullyQualifiedTypeName name="Spring.anno.ex4.DaoInter"/>
+    <fullyQualifiedTypeName name="Spring.anno.ex4.MyDao"/>
+    <fullyQualifiedTypeName name="Spring.anno.ex4.LogicController"/>
+    <fullyQualifiedTypeName name="java.math.BigInteger"/>
+    <fullyQualifiedTypeName name="Spring.anno.ex5.MyFruit"/>
+    <fullyQualifiedTypeName name="Spring.anno.ex5.ThailandFruit"/>
+    <fullyQualifiedTypeName name="javax.annotation.Resource"/>
+    <fullyQualifiedTypeName name="Spring.anno.ex6.MysqlController"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
+    <fullyQualifiedTypeName name="org.springframework.context.support.ClassPathXmlApplicationContext"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+</qualifiedTypeNameHistroy>

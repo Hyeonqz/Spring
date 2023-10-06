@@ -1,0 +1,22 @@
+package Spring.di.ex1;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Ex1Main {
+	public static void main(String[] args) {
+		
+		System.out.println("자바를 잘해야 한다 진짜....");
+		
+		MessageInter m1 = new Message1();
+		MessageInter m2 = new Message2();
+		
+			m1.sayHello("ㅎㅇ");
+			m2.sayHello("hihi");
+			
+		System.out.println();
+		System.out.println("스프링 방식으로 해보기");
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("appContext1.xml");
+	}
+}

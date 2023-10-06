@@ -1,0 +1,5 @@
+package Spring.anno.ex4;
+
+public interface DaoInter {
+
+}

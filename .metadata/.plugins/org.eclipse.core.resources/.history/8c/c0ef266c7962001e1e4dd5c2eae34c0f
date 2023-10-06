@@ -1,0 +1,10 @@
+package Spring.anno.ex6;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class MysqlController {
+	
+	@Autowired
+	TestDao dao;
+
+}

@@ -1,0 +1,6 @@
+package Spring.anno.ex5;
+
+public class MyFruit {
+	
+	Fruit fruit;
+}
