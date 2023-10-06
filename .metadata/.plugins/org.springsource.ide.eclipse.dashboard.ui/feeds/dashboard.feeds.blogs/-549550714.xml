@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 04 Oct 2023 19:16:49 GMT</lastBuildDate><item><title><![CDATA[Synchronizing with External Transaction Managers in Spring Cloud Stream Kafka Applications]]></title><link>https://spring.io/blog/2023/10/04/synchronizing-with-external-transaction-managers-in-spring-cloud-stream</link><guid isPermaLink="true">https://spring.io/blog/2023/10/04/synchronizing-with-external-transaction-managers-in-spring-cloud-stream</guid><dc:creator><![CDATA[Soby Chacko]]></dc:creator><pubDate>Wed, 04 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Other parts in this blog series&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 05 Oct 2023 08:46:13 GMT</lastBuildDate><item><title><![CDATA[A Bootiful Podcast: Spring Data legend Greg Turnquist on optimizations and queries and more]]></title><link>https://spring.io/blog/2023/10/05/a-bootiful-podcast-spring-data-legend-greg-turnquist-on-optimizations-and</link><guid isPermaLink="true">https://spring.io/blog/2023/10/05/a-bootiful-podcast-spring-data-legend-greg-turnquist-on-optimizations-and</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 05 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment, we&apos;ll talk to Spring Data legend &lt;a href=&quot;https://twitter.com/gregturn&quot;&gt;Greg Turnquist (@gregturn)&lt;/a&gt; about the incredible next-level optimizations and query enhancements, the work in general, and so much more. Recorded live at SpringOne 2023 in Las Vegas!&lt;/p&gt;
+&lt;iframe title=&quot;Spring Data legend Greg Turnquist on optimizations, queries, and more&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=7h6h3-14c244d-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[Synchronizing with External Transaction Managers in Spring Cloud Stream Kafka Applications]]></title><link>https://spring.io/blog/2023/10/04/synchronizing-with-external-transaction-managers-in-spring-cloud-stream</link><guid isPermaLink="true">https://spring.io/blog/2023/10/04/synchronizing-with-external-transaction-managers-in-spring-cloud-stream</guid><dc:creator><![CDATA[Soby Chacko]]></dc:creator><pubDate>Wed, 04 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Other parts in this blog series&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Part 1: &lt;a href=&quot;https://spring.io/blog/2023/09/27/introduction-to-transactions-in-spring-cloud-stream-kafka-applications&quot;&gt;Introduction to Transactions in Spring Cloud Stream Kafka Applications&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Part 2: &lt;a href=&quot;https://spring.io/blog/2023/09/28/producer-initiated-transactions-in-spring-cloud-stream-kafka-applications&quot;&gt;Producer Initiated Transactions in Spring Cloud Stream Kafka Applications
 &lt;/a&gt;&lt;/p&gt;
@@ -752,88 +753,4 @@ It would be beneficial to use Spring for Apache Kafka or another framework (such
 	builder.set(&quot;paketobuildpacks/builder-jammy-base:latest&quot;)
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;See the Spring Boot Gradle plugin &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/#build-image.customization&quot;&gt;documentation&lt;/a&gt; for more information on configuring the plugin.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Simplified Event Externalization with Spring Modulith]]></title><link>https://spring.io/blog/2023/09/22/simplified-event-externalization-with-spring-modulith</link><guid isPermaLink="true">https://spring.io/blog/2023/09/22/simplified-event-externalization-with-spring-modulith</guid><dc:creator><![CDATA[Oliver Drotbohm]]></dc:creator><pubDate>Fri, 22 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Transactional service methods are a common pattern in Spring applications. These methods trigger a state transition important to the business. This usually involves a core domain abstraction, such as an aggregate and its corresponding repository. A stereotypical example of such an arrangement might look like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@Service
-@RequiredArgsConstructor
-class OrderManagement {
-
-  private final OrderRepository orders;
-
-  @Transactional
-  Order complete(Order order) {
-     return orders.save(order.complete());
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;As state transitions like these might be interesting to third parties, we might want to involve a message broker to publish a message for general distribution across other systems. A naive approach to implement this would be to hide that kind of interaction in another Spring service, inject that into our primary bean and invoke a method that would ultimately interact with the broker.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@Service
-@RequiredArgsConstructor
-class OrderManagement {
-
-  private final OrderRepository orders;
-  private final MessageSender sender;
-
-  @Transactional
-  Order complete(Order order) {
-
-     var result = orders.save(order.complete());
-
-     sender.publishMessage(¡¦);
-
-     return result;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;problems&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#problems&quot; aria-label=&quot;problems permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Problems&lt;/h2&gt;
-&lt;p&gt;Unfortunately, this approach suffers from a variety of problems:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;As the method runs within a transaction, it has already acquired a database connection. Interaction with other infrastructure is costly and, thus, likely significantly extends the length of the transaction, preventing the connection from being returned early, which might lead to connection pool saturation and, thus, poor performance.&lt;/li&gt;
-&lt;li&gt;While we have elegantly wrapped the interaction with the broker behind a nice-looking facade, our &lt;code&gt;completeOrder(¡¦)&lt;/code&gt; method is now susceptible to more infrastructure problems. Failing to access the broker rolls back the transactions and prevent orders from completion. Our system might be technically available but entirely unable to do anything useful due to a downstream infrastructure problem.&lt;/li&gt;
-&lt;li&gt;Lastly, we have created a consistency issue in case the message publication succeeds but the database transaction ends up rolling back eventually.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;A common pattern to solve these problems is publishing an application event from the service, which, at first glance, doesn&apos;t look too different from what we had laid out before.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@Service
-@RequiredArgsConstructor
-class OrderManagement {
-
-  private final OrderRepository orders;
-  private final ApplicationEventPublisher events; 
-
-  @Transactional
-  Order complete(Order order) {
-
-     var result = orders.save(order.complete());
-
-     events.publishEvent(
-         new OrderCompleted(result.getId(), result.getCustomerId()));
-
-     return result;
-  }
-
-  record OrderCompleted(OrderId orderId, CustomerId customerId) {}
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The primary difference here is that the event published is a simple object handed around &lt;em&gt;within&lt;/em&gt; the JVM in the first place. The actual interaction with the broker would then be implemented in an &lt;code&gt;@Async&lt;/code&gt; &lt;code&gt;@TransactionalEventListener&lt;/code&gt;. By default, such a listener will be invoked after the original business transaction has committed, which resolves issue 3. Marking the listener with &lt;code&gt;@Async&lt;/code&gt; causes the event handling being executed on a separate thread, which in turn solves problem 1.&lt;/p&gt;
-&lt;h2 id=&quot;spring-modulith-event-externalization&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-modulith-event-externalization&quot; aria-label=&quot;spring modulith event externalization permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Modulith Event Externalization&lt;/h2&gt;
-&lt;p&gt;The implementation of the listener is a rather mundane exercise: we have to select a broker-specific client (Spring Kafka, Spring AMQP, JMS, and others), marshal the event, determine a routing target, and (optional and depending on the broker) a routing key. Spring Modulith 1.1 M1 ships such an integration out of the box. To use it with Kafka, for example, you would add the corresponding artifact to your project¡¯s class path:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;#x3C;dependency&gt;
-  &amp;#x3C;groupId&gt;org.springframework.modulith&amp;#x3C;/groupId&gt;
-  &amp;#x3C;artifactId&gt;spring-modulith-events-api&amp;#x3C;/artifactId&gt;
-&amp;#x3C;/dependency&gt;
-&amp;#x3C;dependency&gt;
-  &amp;#x3C;groupId&gt;org.springframework.modulith&amp;#x3C;/groupId&gt;
-  &amp;#x3C;artifactId&gt;spring-modulith-events-kafka&amp;#x3C;/artifactId&gt;
-  &amp;#x3C;scope&gt;runtime&amp;#x3C;/scope&gt;
-&amp;#x3C;/dependency&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The presence of the latter JAR registers a listener, as described above. To get an application event transparently published to a broker, you can annotate it with the &lt;code&gt;@Externalized&lt;/code&gt; annotation provided by either Spring Modulith&apos;s (the first JAR) or jMolecules&apos; (not shown), like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import org.springframework.modulith.events.Externalized;
-
-@Externalized(&quot;orders.OrderCompleted::#{customerId()}&quot;)
-record OrderCompleted(OrderId orderId, CustomerId customerId) {}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The presence of the annotation triggers instances of that class being selected for publication. We have defined &lt;code&gt;orders.OrderCompleted&lt;/code&gt; as a routing target. The SpEL expression, &lt;code&gt;#{customerId()}&lt;/code&gt;, selects the accessor method to be invoked on the event to produce a routing key, which triggers the correct partition assignment. If you prefer describing event selection and routing in code, check out how to use &lt;a href=&quot;https://docs.spring.io/spring-modulith/reference/1.1/events.html#externalization.api&quot;&gt;&lt;code&gt;EventExternalizationConfiguration&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;error-scenarios&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#error-scenarios&quot; aria-label=&quot;error scenarios permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Error Scenarios&lt;/h2&gt;
-&lt;p&gt;This is all pretty convenient, and we have elegantly solved two of our three problems already. But what about the error scenario? What if the message publication fails? The original business transaction has already committed, but we have now lost the internal event publication. Fortunately, that case is already solved by Spring Modulith&apos;s &lt;a href=&quot;https://docs.spring.io/spring-modulith/reference/1.1/events.html#publication-registry&quot;&gt;Event Publication Registry&lt;/a&gt;. It creates a registry entry for every transactional event listener interested in an event being published and marks that entry completed only if the listener succeeds. Failing to send the message to the broker results in the entry staying around, being subject to resubmission attempts later.&lt;/p&gt;
-&lt;h2 id=&quot;summary&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#summary&quot; aria-label=&quot;summary permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Summary&lt;/h2&gt;
-&lt;p&gt;Interacting with third infrastructure within a primary business transaction should be avoided for performance, reliability, and consistency reasons. Spring Modulith 1.1 allows easily publishing application events to message brokers by marking event types for externalization and defining routing targets and keys. For more information, refer to the &lt;a href=&quot;https://docs.spring.io/spring-modulith/reference/1.1/events.html#externalization&quot;&gt;reference documentation&lt;/a&gt;.&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;See the Spring Boot Gradle plugin &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/#build-image.customization&quot;&gt;documentation&lt;/a&gt; for more information on configuring the plugin.&lt;/p&gt;</content:encoded></item></channel></rss>
