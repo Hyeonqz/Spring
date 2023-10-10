@@ -12,31 +12,40 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table class="table table-bordered" width="500px;">
+
+<div>
+<form action="res2" method="get">
+	<table class="table table-bordered" width="500px;">
 
 	<tr>
 		<td width="100px;">이름</td>
-		<td>${name}</td>
+		<td><input type="text" name="name" placeholder="이름입력해라"></td>
 	</tr>
 	
 	<tr>
 		<td width="100px;">학교</td>
-		<td>${school}</td>
+		<td><input type="text" name="shcool" placeholder="학교입력"></td>
 	</tr>
 	
 	<tr>
 		<td width="100px;">학년</td>
-		<td>${grade}</td>
+		<td><input type="text" name="grade" placeholder="학년입력해라"></td>
 	</tr>
 	
 	<tr>
 		<td width="100px;">학교주소</td>
-		<td>${addr}</td>
+		<td><input type="text" name="saddr" placeholder="힉교주소입력해라"></td>
+	</tr>
+	
+	<tr>
+		<td colspan="2">
+		<button type="submit" class="btn btn-outline-dark" style="margin-right:40px;">Result2 전송</button>
+		</td>
 	</tr>
 
-</table>
-
-
+	</table>
+</form>
+</div>
 
 
 </body>

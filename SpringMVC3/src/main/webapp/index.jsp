@@ -13,12 +13,14 @@
 </head>
 <body>
 
-<div class="alert alert-info">
+<div class="alert alert-info" style="margin-left:100px; margin-top:100px;">
+<b>
 <button onclick="location.href='ilike/movie'" class="btn btn-outline-dark">제목을 메시지로 받아서 출력하고 그아래 이미지</button><br><br>
 <button onclick="location.href='school/myinfo'" class="btn btn-outline-dark">GET방식 테이블 출력(이름,학교,학년,학교주소)</button><br><br>
 <button onclick="location.href='shop/ipgo'" class="btn btn-outline-dark">POST방식 테이블 출력(상품명,카테고리,색상,가격)_Dto활용</button><br><br>
 <button onclick="location.href='mysinsang'" class="btn btn-outline-dark">MAP방식 테이블 출력()</button>
+</b>
 </div>
 
 </body>
-</html>
+</html> 

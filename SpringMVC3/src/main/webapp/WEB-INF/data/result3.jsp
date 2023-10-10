@@ -12,6 +12,34 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="res3" method="post">
+	<table class="table table-bordered">
+	
+		<tr>
+			<td>상품명</td>
+			<td><input type="text" name="sang"></td>
+		</tr>	
+		
+		<tr>
+			<td>카테고리</td>
+			<td><input type="text" name="category"></td>
+		</tr>	
+		
+		<tr>
+			<td>색상</td>
+			<td><input type="text" name="color"></td>
+		</tr>	
+		
+		<tr>
+			<td>가격</td>
+			<td><input type="text" name="price"></td>
+		</tr>	
+	
+		<tr>
+			<td colspan="2"><button type="submit">res3전송하기</button></td>
+		</tr>
+	</table>
+</form>
 
 
 

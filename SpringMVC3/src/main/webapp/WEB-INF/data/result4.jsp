@@ -12,7 +12,34 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<form action="res4" method="post">
+	<table class="table table-bordered">
+	
+		<tr>
+			<td>1</td>
+			<td><input type="text" name="one"></td>
+		</tr>	
+		
+		<tr>
+			<td>2</td>
+			<td><input type="text" name="two"></td>
+		</tr>	
+		
+		<tr>
+			<td>3</td>
+			<td><input type="text" name="three"></td>
+		</tr>	
+		
+		<tr>
+			<td>4</td>
+			<td><input type="text" name="four"></td>
+		</tr>	
+	
+		<tr>
+			<td colspan="2"><button type="submit">res4전송하기</button></td>
+		</tr>
+	</table>
+</form>
 
 
 
