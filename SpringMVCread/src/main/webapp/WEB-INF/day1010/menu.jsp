@@ -12,14 +12,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div style="margin-left:200px; margin-top:50px;">
+	<div style="margin-left:300px; margin-top:100px;">
 		<button type="button" class="btn btn-outline-dark" onclick="location.href='naver/form1'">각각 읽기</button><br><br>
 	
 		<button type="button" class="btn btn-outline-dark" onclick="location.href='naver/form2'">DTO 읽기</button><br><br>
 	
 		<button type="button" class="btn btn-outline-dark" onclick="location.href='naver/form3'">MAP 읽기</button><br><br>
 	
-		<button type="button" class="btn btn-outline-dark" onclick="location.href='naver/form4'">이미지 업로드하기</button><br>
+		<button type="button" class="btn btn-outline-dark" onclick="location.href='naver/form4'">이미지 업로드하기(한개)</button><br><br>
+		
+		<button type="button" class="btn btn-outline-dark" onclick="location.href='naver/uploadForm2'">이미지 업로드하기(여러개)</button><br>
 	</div>
 </body>
 </html>
