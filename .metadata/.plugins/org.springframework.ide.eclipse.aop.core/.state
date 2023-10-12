@@ -6,5 +6,7 @@
 <aop-project name="SpringMVC2"/>
 <aop-project name="SpringMVC3"/>
 <aop-project name="SpringMVCread"/>
+<aop-project name="SpringMVCJson7"/>
+<aop-project name="SpringMySql6"/>
 <aop-project name="Spring_ex1"/>
 </aop-reference-model>

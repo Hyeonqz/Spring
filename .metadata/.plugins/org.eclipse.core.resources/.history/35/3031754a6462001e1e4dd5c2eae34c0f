@@ -1,8 +1,0 @@
-package Spring.anno.ex4;
-
-public class LogicController {
-	
-	DaoInter daoInter = new DaoInter() {
-		
-	}
-}

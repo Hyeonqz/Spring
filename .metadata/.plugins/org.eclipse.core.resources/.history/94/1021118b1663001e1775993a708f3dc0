@@ -1,9 +1,0 @@
-package Spring.anno.last;
-
-public class ShopDao implements ShopInter {
-
-	public ShopDao() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

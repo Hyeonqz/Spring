@@ -1,9 +1,0 @@
-package Spring.di.ex1;
-
-public class Ex1Main {
-	public static void main(String[] args) {
-		MessageInter m1 = new Message1();
-		MessageInter m2 = new Message2();
-	
-	}
-}

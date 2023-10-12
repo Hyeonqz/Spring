@@ -1,6 +1,5 @@
 package spring.mysql.mycar;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CarController {
 	
 	@Autowired
 	MyCarDao dao;
-	//자동주입, 이안에 메서드 호출하기 위해서 하는것.
+	//자동주입, 이안에 메서드 호출하기 위해서 하는것. MyCarDao 안에있는 메서드 다 사용가능.
 	
 	@GetMapping("kakao/list")
 	public String kakao(Model model) {
@@ -35,32 +33,11 @@ public class CarController {
 		return "car/carlist";
 	}
 	
+	
 	@GetMapping("kakao/writeform")
 	public String writeform() {
 		return "car/writeform";
 	}
-	
-	/*
-	 * @PostMapping("/write") public ModelAndView write(
-	 * 
-	 * @RequestParam String name,
-	 * 
-	 * @RequestParam String price,
-	 * 
-	 * @RequestParam String color,
-	 * 
-	 * @RequestParam String guip) {
-	 * 
-	 * ModelAndView modelAndView = new ModelAndView();
-	 * 
-	 * modelAndView.addObject("carname", name); modelAndView.addObject("carprice",
-	 * price); modelAndView.addObject("carcolor", color);
-	 * modelAndView.addObject("carguip", guip);
-	 * 
-	 * modelAndView.setViewName("car/carlist");
-	 * 
-	 * return modelAndView; }
-	 */
 	
 	@PostMapping("kakao/write") //가는주소
 	public String write1(@ModelAttribute("dto") MyCarDto dto) {
@@ -71,14 +48,29 @@ public class CarController {
 	}
 	
 	@GetMapping("kakao/deleteform") //가상경로 라고 생각
-	public String deleteform(@ModelAttribute("dto") MyCarDto dto) {
+	public String deleteform(@RequestParam String num) {
 		
-		dao.deleteCar(dto);
+		dao.deleteCar(num);
 		
 		return "redirect:list"; //list가 이미 있으므로, 이런식으로 호출
 	}
 	
+	@GetMapping("kakao/updateform")
+	public String goUpdate(String num, Model model) {
+		
+		MyCarDto dto = dao.getData(num);
+		
+		model.addAttribute("dto",dto); //model을 통해서 dto 변수를 넘겨준다.
+		
+		return "car/updateForm";
+	}
 	
+	@PostMapping("kakao/update")
+	public String updateList(@ModelAttribute MyCarDto dto) {
+		dao.update(dto);
+		
+		return "redirect:list"; 
+	}
 	
 	
 	

@@ -25,4 +25,13 @@
 	</delete>
 	<!-- public resultType method(parameterType) {
 	} -->
+	
+	<select id="selectOneOfMyCar" resultType="mdto" parameterType="String">
+		select * from mycar where num= #{num}
+	</select>
+	
+	<update id="updateOfMycar" parameterType="mdto">
+		update mycar set carname=#{carname},carprice=#{carprice}, carcolor=#{carcolor}, carguip=#{carguip} where num=#{num}
+	</update>
+	
 </mapper>

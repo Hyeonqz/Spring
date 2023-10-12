@@ -31,8 +31,23 @@ public class MyCarDao {
 	}
 	
 	//삭제
-	public void deleteCar(MyCarDto dto) {
-		session.delete("deleteOfMycar",dto);
+	public void deleteCar(String num) {
+		session.delete("deleteOfMycar",num);
 	}
+	
+	//num값에 맞는 것만  조회
+	public MyCarDto getData(String num) {  //pulbic resultType 메서드이름(파라미터 타입 num)
+		
+		return session.selectOne("selectOneOfMyCar",num);
+		
+	}
+	
+	//업데이트 메서드
+	public void update(MyCarDto dto) {
+		session.update("updateOfMycar", dto);
+	}
+	
+	
+	
 
 }

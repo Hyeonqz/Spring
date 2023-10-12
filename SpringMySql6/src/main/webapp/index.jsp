@@ -12,9 +12,34 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:redirect url="kakao/list"></c:redirect>
 
+<button type="button" class="btn btn-info" style="width:120px;" onclick="location.href='kakao/list'">자동차 정보목록</button>
+<button type="button" class="btn btn-info" style="width:120px;" onclick="location.href='car/list'">자동차 구입고객명단</button>
 
+	<!-- 내 정보 -->
+<div id="rightSideBar">
+	<div id="myinfoContainer">
+		<div id="name">
+			<h3> 진현규 </h3>
+		</div>
+		<div id="position">
+			JAVA Backend Engineer
+		</div>
+	</div>
+
+	<div id="contactContainer">
+		<a href="https://github.com/galid1">
+			<i class="contactIcon fab fa-github"></i>		
+		</a>
+		<a href="https://www.notion.so/8607945aef264311887549734c2dd611">
+			<i class="contactIcon fas fa-user-circle"></i>
+		</a>
+		<a href="mailto:galid9619@gmail.com">
+			<i class="contactIcon fas fa-envelope"></i>
+		</a>
+	</div>
+
+</div>
 
 </body>
 </html>

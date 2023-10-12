@@ -1,7 +1,0 @@
-package Spring.anno.last;
-
-public interface ShopInter {
-	
-	public void insertShop(String a, int b, String c);
-
-}
