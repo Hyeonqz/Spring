@@ -25,12 +25,13 @@
 		$.ajax({
 			type:"get",
 			dataType:"json",
-			url : "list1",
-			success:function(res){
+			url : "list2",
+			success:function(res1){
+				
 				$("#out2").empty();
-				$("#out2").append("상품 : "+res.sang + "<br>");
-				$("#out2").append("가격 : " +res.price + "<br>");
-				$("#out2").append("색깔 : "+res.color + "<br>");
+				$("#out2").append("상품 : "+res1.sang + "<br>");
+				$("#out2").append("가격 : " +res1.price + "<br>");
+				$("#out2").append("색깔 : "+res1.color + "<br>");
 			}
 		})
 	})

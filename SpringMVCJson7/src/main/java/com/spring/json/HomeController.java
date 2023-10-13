@@ -47,4 +47,14 @@ public class HomeController {
 		return "ex2";
 	}
 	
+	@GetMapping("/jsonex3")
+	public String ex3() {
+		return "ex3";
+	}
+	
+	@GetMapping("/jsonex4")
+	public String ex4() {
+		return "ex4";
+	}
+	
 }

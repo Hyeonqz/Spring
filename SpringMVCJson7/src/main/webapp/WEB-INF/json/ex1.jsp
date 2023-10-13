@@ -19,7 +19,6 @@
 <div id="out1">
 
 </div>
-
 <script>
 	$("#btn1").click(function(){
 		$.ajax({
