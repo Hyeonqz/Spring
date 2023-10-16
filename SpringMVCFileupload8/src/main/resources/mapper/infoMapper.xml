@@ -14,9 +14,9 @@
 		insert into myinfo values(null,#{name}, #{driver}, #{addr}, #{photo}, now())
 	</insert>
 	
-	<select id="selectAllofMyInfo" resultType="indto">
+<!-- 	<select id="selectAllofMyInfo" resultType="indto">
 		select * from myinfo order by num desc
-	</select>
+	</select> -->
 	
 	<select id="selectOneNum" resultType="indto" parameterType="String">
 		select * from myinfo where num= #{num}
@@ -35,5 +35,34 @@
 		</if>
 		where num=#{num}
 	</update>
+	
+	 <select id="selectAllofMyInfo" resultType="indto" parameterType="Map">
+		select * from myinfo 
+		<if test="search != null">
+		where ${title} like concat ('%',${search},'%')
+		</if>
+		order by num desc
+		<!-- 
+		<검색할 column이 없으면, {검색기준 필드명}은 사라짐 , 
+		title가져온거는 infoList에 있는 column name이다 
+			where {검색기준 필드명} like concat('%',?,'%')
+		-->
+	</select> 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </mapper>

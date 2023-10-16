@@ -12,11 +12,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<br>
+<div class="master">
+<br><br><br>
 <button type="button" class="btn btn-info" onclick="location.href='info/list'">스프링 게시판 연습1_myinfo</button>
-<br><hr>
-<button type="button" class="btn btn-info" onclick="location.href='info/list2'">스프링 게시판 연습_myinfo</button>
-
+<br><hr><br>
+<button type="button" class="btn btn-info" onclick="location.href='board/list'">스프링 게시판 연습_reboard</button>
+</div>
 </body>
 </html>

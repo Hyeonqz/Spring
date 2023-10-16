@@ -4,14 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,12 +27,18 @@ public class InfoController {
 	InfoInter inter;
 	
 	@GetMapping("/info/list")
-	public ModelAndView info1() {
+	public ModelAndView info1(@RequestParam(defaultValue = "name") String title, @RequestParam(required = false) String search) {
 		
 		ModelAndView mv = new ModelAndView();
+		Map<String,String> map = new HashMap<String,String>();
+		
+		 map.put("search", search);
+		 map.put("title",title);
+		
+		System.out.println(title + "," + search);
 		
 		int totalcount = inter.getTotalCount();
-		List<InfoDto> list = inter.getAllInfos();
+		List<InfoDto> list = inter.getAllInfos(map);
 		
 		mv.addObject("totalcount",totalcount);
 		mv.addObject("list",list);

@@ -63,7 +63,20 @@
 		</c:forEach>
 
 	</table>
-
+	
+	<div style="width: 900px; text-align: left; border: 2px solid orange;">
+	
+		<form action="list" style="width: 150px;">
+			<select name="title">
+				<option value="name" ${title=='name'?"selected":""}>이름</option>
+				<option value="addr" ${title=='name'?"selected":""}>주소</option>
+				<option value="driver" ${title=='name'?"selected":""}>운전면허</option>
+			</select>
+			<input type="text" name="search" class="form-control" placeholder="검색할 단어" style="width:150px;" value="${search }">
+			
+			<button type="submit" class="btn btn-outlie-dark">검색</button>
+		</form>
+	</div>
 
 </body>
 </html>
