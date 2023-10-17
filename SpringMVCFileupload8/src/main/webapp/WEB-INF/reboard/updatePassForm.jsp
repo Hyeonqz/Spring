@@ -12,7 +12,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<div style="margin:200px 200px;">
+		<form action="updatepass" method="post" >
+			<input type="hidden" name="num" value="${num }">
+			<input type="hidden" name="currentPage" value="${currentPage }">
+			
+			<div class="alert alert-info" style="width:300px; font-size:1.3em;">
+				<b>수정하고 싶나요??</b><br>
+				<span>아래 비밀번호를 입력해라 그럼</span>
+			</div>
+			<div class="d-inlne-flex">
+				<input type="password" name="pass" class="form-control" style="width:120px;" required="required"><br>
+			</div>
+			<button type="submit" id="btn1" class="btn btn-danger">수정하기</button>
+			<button type="button" class="btn btn-outline-info" onclick="history.back()">이전으로</button>
+		</form>
+	</div>
 
 
 

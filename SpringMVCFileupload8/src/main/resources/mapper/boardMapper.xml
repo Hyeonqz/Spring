@@ -16,7 +16,7 @@
 	
 	<!-- 같은 그룹중에서 step보다 큰 데이터는 모두 +1 -->
 	<update id="UpdateStepOfReboard" parameterType="HashMap">
-		update reboard set restep = restep+1 where regroup = ${regroup} and resteop > #{restep}
+		update reboard set restep = restep+1 where regroup = ${regroup} and restep > #{restep}
 	</update>
 	
 	<!-- insert : 새글, 답글, 모두 해당  -->
@@ -25,15 +25,37 @@
 		#{photo},#{regroup},#{restep},#{relevel},#{readcount},now())
 	</insert>
 	
-	
 	<!-- 페이징처리 전체리스트 -->
 	<select id="SelectPagingOfReboard" resultType="bdto" parameterType="HashMap">
 		SELECT * FROM reboard ORDER BY regroup DESC, restep ASC LIMIT #{start}, #{perpage}
 	</select>	
 	
+	<!-- 하나의 DTO값 얻기 -->
+	<select id="getDataOfReboard" resultType="bdto" parameterType="int">
+		select * from reboard where num=#{num}
+	</select>
 	
+	<!-- 조회 수 1증가 -->
+	<update id="updateReadCountOfReboard" parameterType="int">
+		update reboard set readcount=readcount+1 where num=#{num}
+	</update>
 	
+	<!-- 비밀번호 맞는지 확인  -->
+	<select id="checkpassEqualOfReboard" resultType="int" parameterType="Map">
+		select count(*) from reboard where num=#{num} and pass=#{pass}
+	</select>
 	
+	<update id="updateformOfReboard" parameterType="bdto">
+		update reboard set writer=#{writer}, pass=#{pass}, subject=#{subject}, content=#{content} 
+		<if test="photo!=null">
+		,photo=#{photo}
+		</if>
+		 where num=#{num}
+	</update> 
+	
+	<delete id="deletepassOfReboard" parameterType="int">
+		delete from reboard where num=#{num}
+	</delete>
 	
 	
 </mapper>

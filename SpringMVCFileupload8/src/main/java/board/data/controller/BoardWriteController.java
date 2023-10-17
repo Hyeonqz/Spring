@@ -59,6 +59,7 @@ public class BoardWriteController {
 	@PostMapping("/board/insert")
 	public String insert(@ModelAttribute BoardDto dto,
 			@RequestParam ArrayList<MultipartFile> uimage,
+			@RequestParam(name="currentPage") int currentPage,
 			HttpSession session) {
 		
 		//실제경로
@@ -93,8 +94,9 @@ public class BoardWriteController {
 		
 		dao.insertReboard(dto);
 		
+		int num = dao.getMaxNum();
 		
-		return "redirect:list";
+		return "redirect:content?num="+num+"&currentPage="+currentPage;
 	}
 	
 	

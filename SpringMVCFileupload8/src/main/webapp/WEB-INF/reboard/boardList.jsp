@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<div style="margin:50px 50px;">
+<div style="margin:50px 50px; margin-top:100px; margin-left:300px;">
 	<table class="table table-bordered" style="width:800px;">
 		<caption align="top"><b>스프링 답변형 게시판</b>
 			<span style="float:right">
@@ -74,49 +74,37 @@
   
    
 <!-- 페이지 번호 출력 -->
-   <c:if test="${totalCount>0 }">
-      <div style="width:800px; text-align: center">
-          <ul class="pagination justify-content-center">
-             <!-- 이전 -->
-             <c:if test="${startPage>1 }">
-                <li><a href="list?currentPage=${startPage-1 }">이전</a></li>
-             </c:if>
-          
-          <c:forEach var="pp" begin="${startPage }" end="${endPage }">
-             <c:if test="${currentPage==pp }">
-                <li class="page-item active"><a href="list?currentPage=${pp }">${pp }</a></li>
-             </c:if>
-             <c:if test="${currentPage!=pp }">
-                <li class="page-link"><a href="list?currentPage=${pp }">${pp }</a></li>
-             </c:if>
-          </c:forEach>
-          
-             <!-- 다음 -->
-             <c:if test="${endPage<totalPage }">
-                <li class="page-item"><a href="list?currentPage=${endPage+1 }">다음</a></li>
-             </c:if>
-             
-          </ul>
-      </div>
-   </c:if>
-     
+	<div>
+			<!-- 페이지 번호 출력 -->
+			<c:if test="${totalCount>0 }">
+				<div style="width: 800px; text-align: center">
+					<ul class="pagination justify-content-center">
+						<!-- 이전 -->
+						<c:if test="${startPage>1 }">
+							<li class="page-item"><a class="page-link" href="list?currentPage=${startPage-1 }">이전</a></li>
+						</c:if>
+
+						<c:forEach var="pp" begin="${startPage }" end="${endPage }">
+							<c:if test="${currentPage==pp }">
+								<li class="page-item active"><a class="page-link"
+									href="list?currentPage=${pp }">${pp }</a></li>
+							</c:if>
+							<c:if test="${currentPage!=pp }">
+								<li class="page-item"><a class="page-link" href="list?currentPage=${pp }">${pp }</a></li>
+							</c:if>
+						</c:forEach>
+
+						<!-- 다음 -->
+						<c:if test="${endPage<totalPage }">
+							<li class="page-item"><a class="page-link"
+								href="list?currentPage=${endPage+1 }">다음</a></li>
+						</c:if>
+
+					</ul>
+				</div>
+			</c:if>
+		</div>
 	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
 

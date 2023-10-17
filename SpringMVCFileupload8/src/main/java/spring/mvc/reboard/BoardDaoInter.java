@@ -69,7 +69,37 @@ public class BoardDaoInter implements BoardInter {
 		map.put("perpage", perpage);
 		
 		return session.selectList("SelectPagingOfReboard",map);
+	}
+
+	@Override
+	public BoardDto getData(int num) {
+		return session.selectOne("getDataOfReboard",num);
+	}
+
+	@Override
+	public void updateReadcount(int num) {
+		session.update("updateReadCountOfReboard", num);
+	}
+
+	@Override
+	public int getCheckPass(int num, int pass) {
 		
+		Map<String,Integer> map = new HashMap<String, Integer>();
+		
+		map.put("num",num);
+		map.put("pass",pass);
+		
+		return session.selectOne("checkpassEqualOfReboard", map);
+	}
+
+	@Override
+	public void updateform(BoardDto dto) {
+		session.update("updateformOfReboard", dto);
+	}
+
+	@Override
+	public void deleteForm(int num) {
+		session.delete("deletepassOfReboard",num);
 	}
 
 }
