@@ -29,6 +29,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="spring.mvc.*,board.data.*"/>
+	<context:component-scan base-package="spring.mvc.*,board.data.*,answer.data"/>
 	
 </beans:beans>
